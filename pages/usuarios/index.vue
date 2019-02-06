@@ -1,0 +1,86 @@
+<template>
+  <v-layout
+    column
+    justify-center
+    align-center
+  >
+    <v-flex
+      xs12
+      sm8
+      md6
+    >
+      <v-card>
+        <v-card-title class="headline">Lista de usuarios
+          <v-spacer />
+          <v-btn
+            color="white"
+            flat
+            nuxt
+            to="/usuarios/agregar"
+          >Agregar usuario</v-btn>
+        </v-card-title>
+        <v-card-text>
+          <v-data-table
+            :headers="headers"
+            :items="usuarios"
+            class="elevation-1"
+          >
+            <template slot="items" slot-scope="props">
+              <td>{{ props.item.name }}</td>
+              <td class="text-xs-right">{{ props.item.username }}</td>
+              <td class="text-xs-right">{{ props.item.email }}</td>
+              <td class="text-xs-right">
+                <v-btn flat icon color="blue">
+                  <v-icon>remove_red_eye</v-icon>
+                </v-btn>
+                <v-btn flat icon color="green">
+                  <v-icon>edit</v-icon>
+                </v-btn>
+                <v-btn flat icon color="red">
+                  <v-icon>delete_sweep</v-icon>
+                </v-btn>
+              </td>
+            </template>
+          </v-data-table>
+        </v-card-text>
+        <v-card-actions>
+          
+        </v-card-actions>
+      </v-card>
+    </v-flex>
+  </v-layout>
+</template>
+
+<script>
+
+export default {
+  components: {
+  },
+  data() {
+    return {
+        headers: [
+          {
+            text: 'Nombre',
+            align: 'left',
+            value: 'name'
+          },
+          { text: 'Username', value: 'username' },
+          { text: 'Email', value: 'email' },
+          { text: 'Acciones', sortable: false, value: '' },
+        ],
+      usuarios: [
+        {
+          name: 'Sergio Molina',
+          username: 'SeFeX',
+          email: 'smmm20140724@gmail.com'
+        }
+      ]
+    }
+  },
+  head () {
+    return {
+      title: 'Lista de Usuarios'
+    }
+  }
+}
+</script>
