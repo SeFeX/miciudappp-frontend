@@ -44,7 +44,7 @@
       login(){
         let vm = this
         vm.err = null
-        axios.post('/login',
+        axios.post(':6000/login',
         {
           email: vm.email,
           password: vm.password
