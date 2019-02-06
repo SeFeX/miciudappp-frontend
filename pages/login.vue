@@ -11,7 +11,7 @@
               </v-toolbar>
               <v-card-text>
                 <v-form>
-                  <p class="red-text" v-if="err!=null">{{err}}</p>
+                  <p class="text-danger center-text" v-if="err!=null">{{err}}</p>
                   <v-text-field v-model="email" prepend-icon="person" name="login" label="Login" type="text"></v-text-field>
                   <v-text-field v-model="password" id="password" prepend-icon="lock" name="password" label="Password" type="password"></v-text-field>
                 </v-form>
@@ -44,14 +44,14 @@
       login(){
         let vm = this
         vm.err = null
-        axios.post(':6000/login',
+        vm.$axios.post('http://localhost:8080/login',
         {
           email: vm.email,
           password: vm.password
         })
         .then(function (response) {
-          this.$store.commit('login')
-          this.$router.push('/')
+          vm.$store.commit('login')
+          vm.$router.push('/')
         })
         .catch(function(err) {
           vm.err = "Usuario o contraseña incorrecta"
