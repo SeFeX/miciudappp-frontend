@@ -3,13 +3,8 @@ export const state = () => ({
 })
 
 export const mutations = {
-  login (state) {
-    state.user = {
-    	name: 'Sergio',
-    	username: 'Sefex',
-    	email: 'sergiomontiel1@hotmail.com',
-    	password: 'kasdjalsdkqlwmql'
-    }
+  login (state, user) {
+    state.user = user
   },
   logout (state){
   	state.user = null

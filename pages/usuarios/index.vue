@@ -21,6 +21,7 @@
         </v-card-title>
         <v-card-text>
           <v-data-table
+            :loading="loading"
             :headers="headers"
             :items="usuarios"
             class="elevation-1"
@@ -68,14 +69,29 @@ export default {
           { text: 'Email', value: 'email' },
           { text: 'Acciones', sortable: false, value: '' },
         ],
-      usuarios: [
-        {
-          name: 'Sergio Molina',
-          username: 'SeFeX',
-          email: 'smmm20140724@gmail.com'
-        }
-      ]
+        err : '',
+        loading: false,
+        usuarios: []
     }
+  },
+  methods: {
+      loadUsers(){
+        let vm = this
+        vm.loading = true
+        vm.$axios.get('http://localhost:8080/Usuario')
+        .then(function (response) {
+          vm.usuarios = response.data
+        })
+        .catch(function(err) {
+          vm.err = "No se pudieron obtener los usuarios"
+        })
+        .then(function() {
+          vm.loading = false
+        })
+      }
+  },
+  mounted(){
+    this.loadUsers()
   },
   head () {
     return {

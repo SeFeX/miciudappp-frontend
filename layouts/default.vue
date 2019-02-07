@@ -30,6 +30,13 @@
     >
       <v-toolbar-side-icon @click.stop="miniVariant = !miniVariant" />
       <v-toolbar-title v-text="title" />
+      <v-spacer></v-spacer>
+      <v-tooltip left>
+        <v-btn slot="activator" icon large @click="logout">
+          <v-icon large>exit_to_app</v-icon>
+        </v-btn>
+        <span>Cerrar Sesión</span>
+      </v-tooltip>
     </v-toolbar>
     <v-content>
       <v-container>
@@ -65,6 +72,12 @@ export default {
         }
       ],
       title: 'Mi Ciudad App'
+    }
+  },
+  methods:{
+    logout(){
+      this.$store.commit('logout')
+      this.$router.push('/login')
     }
   }
 }

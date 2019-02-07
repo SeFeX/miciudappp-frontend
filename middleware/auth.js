@@ -1,6 +1,5 @@
 export default function ({ store, route, redirect }) {
-	console.log(route)
-	if (store.state.user == null) {
+	if (store.state.user == null &&  route.path != '/login' && route.path != '/register' ) {
     	return redirect('/login')
   	}
 }
